@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>沃德天气</title>
+    <script>window.$ = window.jQuery = require('./bower_components/jquery/dist/jquery.min.js');</script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="model.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="content" ng-controller="content">
+    <div class="nav">
+        <div class="pushLeft"><p>沃德天气</p></div>
+        <div class="search pushRight">
+            <input type="text" placeholder="输入想要查看的城市" ng-model="searchText">
+            <a href="javascript:void (0)" ng-click="searchOther()">查看</a>
+        </div>
+    </div>
+   <div class="view pushLeft"></div>
+    <div class="cover">
+        <div class="top">
+            <div>
+                {{data.currentCity}} &nbsp;&nbsp;2016年{{data['weather_data'][0].date}}
+                &nbsp;&nbsp;PM2.5:{{data.pm25}}
+            </div>
+        </div>
+        <div class="center">
+            <div><h1>{{data['weather_data'][0].temperature}}</h1></div>
+            <div>{{data['weather_data'][0].weather}}</div>
+            <div>{{data['weather_data'][0].wind}}</div>
+        </div>
+        <div class="mainContent">
+            <div ng-repeat="tiptInfo in data.index">
+                <p>{{tiptInfo.tipt}}</p>
+                <span class="des">{{tiptInfo.des}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
